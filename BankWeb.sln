@@ -3,12 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankWeb", "BankWeb\BankWeb.csproj", "{DA09DC93-5736-4E6F-8413-92773970E1F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankWeb", "BankWeb\BankWeb.csproj", "{DA09DC93-5736-4E6F-8413-92773970E1F6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{93D969A3-4FDC-4598-8B3B-38FB93C0BC49}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankWeb.Tests", "BankWeb.Tests\BankWeb.Tests.csproj", "{2724A943-6077-4EF8-8C80-1CB1F1CDEF09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +22,10 @@ Global
 		{DA09DC93-5736-4E6F-8413-92773970E1F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA09DC93-5736-4E6F-8413-92773970E1F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA09DC93-5736-4E6F-8413-92773970E1F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2724A943-6077-4EF8-8C80-1CB1F1CDEF09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2724A943-6077-4EF8-8C80-1CB1F1CDEF09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2724A943-6077-4EF8-8C80-1CB1F1CDEF09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2724A943-6077-4EF8-8C80-1CB1F1CDEF09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
