@@ -35,3 +35,21 @@ body {
         display: none;
     }
 }
+
+.customer-box {
+    display: compact;
+    float: left;
+    border: 2px solid #686868;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.customer-title {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.customer-list {
+    float: right;
+}
