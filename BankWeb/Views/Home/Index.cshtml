@@ -1,5 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Customer>
+
+@{
+    ViewData["Title"] = "Start page";
 }
 
 <div class="row">
@@ -7,3 +9,33 @@
         <h1>Tomas BankWeb</h1>
     </div>
 </div>
+
+
+@foreach (var customer in Model)
+{
+    <div class="row">
+        <div class="col-lg-12 customer-box bg-warning text-danger">
+            <div class="col-lg-6 customer-sub-box">
+                <ul>
+                    <li>
+                        <span class="customer-title text-info">Customer name:</span> @customer.Name
+                    </li>
+                    <li><span class="customer-title text-info">Customer number:</span> @customer.CustomerId</li>
+                </ul>
+            </div>
+            <div class="col-lg-6 customer-sub-box">
+                @foreach (var account in customer.Accounts)
+                {
+                    <ul class="customer-list text-primary">
+                        <li>Account: @account.AccountId</li>
+                        <li>Balance: @account.Balance</li>
+                    </ul>
+                }
+                @if (customer.Accounts.Count() == 0)
+                {
+                    <span class="customer-list">No open accounts!</span>
+                }
+            </div>
+        </div>
+    </div>
+}

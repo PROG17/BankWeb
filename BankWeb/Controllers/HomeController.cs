@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BankWeb.Models;
+using BankWeb.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using BankWeb.Models;
+using System.Diagnostics;
 
 namespace BankWeb.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IBankRepository _repository;
+        public HomeController(IBankRepository repository)
+        {
+            _repository = repository;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            return View(_repository.GetAllCustomers());
         }
 
         public IActionResult About()

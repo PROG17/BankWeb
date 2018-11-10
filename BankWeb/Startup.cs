@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BankWeb.Configs;
+using BankWeb.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,6 +28,9 @@ namespace BankWeb
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.Configure<ApplicationSettingsConfig>(Configuration.GetSection("ApplicationSettings"));
+
+            services.AddScoped<IBankRepository, BankRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
