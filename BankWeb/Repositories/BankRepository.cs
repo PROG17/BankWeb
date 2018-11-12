@@ -11,7 +11,8 @@ namespace BankWeb.Repositories
 {
     public interface IBankRepository
     {
-        IList<Customer> GetAllCustomers();
+        IDictionary<int, Account> GetAllAccounts();
+        IDictionary<int, Customer> GetAllCustomers();
     }
 
     public class BankRepository : IBankRepository
@@ -19,22 +20,29 @@ namespace BankWeb.Repositories
         private readonly IList<Customer> _customers;
         private readonly IList<Account> _accounts;
 
-        private readonly IOptionsSnapshot<ApplicationSettingsConfig> _config;
+        private readonly IOptions<ApplicationSettingsConfig> _config;
 
-        public BankRepository(IOptionsSnapshot<ApplicationSettingsConfig> config)
+        public BankRepository(IOptions<ApplicationSettingsConfig> config)
         {
             _config = config;
 
-            _customers = new List<Customer>();
-            _accounts = new List<Account>();
+            if (_customers == null)
+            {
+                _customers = new List<Customer>();
+                _accounts = new List<Account>();
 
-            LoadData();
+                LoadData();
+            }
         }
 
-
-        public IList<Customer> GetAllCustomers()
+        public IDictionary<int, Account> GetAllAccounts()
         {
-            return _customers;
+            return _accounts.ToDictionary(x => x.AccountId, x => x);
+        }
+
+        public IDictionary<int, Customer> GetAllCustomers()
+        {
+            return _customers.ToDictionary(x => x.CustomerId, x => x);
         }
 
 

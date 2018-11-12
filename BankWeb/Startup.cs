@@ -1,5 +1,6 @@
 ﻿using BankWeb.Configs;
 using BankWeb.Repositories;
+using BankWeb.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,7 +31,8 @@ namespace BankWeb
 
             services.Configure<ApplicationSettingsConfig>(Configuration.GetSection("ApplicationSettings"));
 
-            services.AddScoped<IBankRepository, BankRepository>();
+            services.AddSingleton<IBankRepository, BankRepository>();
+            services.AddScoped<IBankService, BankService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

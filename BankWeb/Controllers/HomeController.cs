@@ -1,5 +1,5 @@
 ﻿using BankWeb.Models;
-using BankWeb.Repositories;
+using BankWeb.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,29 +7,16 @@ namespace BankWeb.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IBankRepository _repository;
-        public HomeController(IBankRepository repository)
+        private readonly IBankService _service;
+
+        public HomeController(IBankService service)
         {
-            _repository = repository;
+            _service = service;
         }
 
         public IActionResult Index()
         {
-            return View(_repository.GetAllCustomers());
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            return View(_service.GetCustomers());
         }
 
         public IActionResult Privacy()

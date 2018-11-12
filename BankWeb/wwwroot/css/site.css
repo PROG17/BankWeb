@@ -42,15 +42,12 @@ body {
     border: 2px solid #686868;
     border-radius: 5px;
     margin: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding: 5px 0 5px 0;
 }
 
 .customer-sub-box {
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .customer-title {
@@ -60,4 +57,12 @@ body {
 
 .customer-list {
     float: left;
+}
+
+.mt-50 {
+    margin-top: 50px;
+}
+
+.red-text {
+    color: red;
 }
