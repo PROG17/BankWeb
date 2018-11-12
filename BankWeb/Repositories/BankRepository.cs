@@ -3,6 +3,7 @@ using BankWeb.Models;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -96,7 +97,7 @@ namespace BankWeb.Repositories
             else if (prop.PropertyType == typeof(int))
                 prop.SetValue(obj, int.Parse(data));
             else if (prop.PropertyType == typeof(decimal))
-                prop.SetValue(obj, decimal.Parse(data));
+                prop.SetValue(obj, decimal.Parse(data, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture));
         }
     }
 }
