@@ -16,8 +16,8 @@
         </div>
         <div class="col-lg-4">
             <div class="form-group regform-item center-block">
-                <label asp-for="ToAccountNumber" for="accountNumberTo" class="label label-primary">To account</label>
-                <input asp-for="ToAccountNumber" type="text" class="form-control" id="accountNumberTo" />
+                <label asp-for="ToAccountNumber" for="toAccountNumber" class="label label-primary">To account</label>
+                <input asp-for="ToAccountNumber" type="text" class="form-control" id="toAccountNumber" />
             </div>
         </div>
         <div class="col-lg-2">
@@ -39,7 +39,7 @@
 
         <div class="col-lg-4">
             <div class="form-group regform-item center-block">
-                <input asp-controller="Bank" asp-action="Transfer" type="submit" value="Transfer" class="form-control btn btn-primary" />
+                <input asp-controller="Transfer" asp-action="Transfer" type="submit" value="Transfer" class="form-control btn btn-primary" />
             </div>
         </div>
     </div>

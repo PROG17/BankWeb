@@ -56,27 +56,5 @@ namespace BankWeb.Controllers
             }
             return View("Index", transfer);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Transfer(Transaction transfer)
-        {
-            if (ModelState.IsValid)
-            {
-                var response = _service.Transfer(transfer.AccountNumber, transfer.ToAccountNumber, transfer.Amount);
-
-                if (response == BankResponse.NoAccount)
-                    ModelState.AddModelError(nameof(Transaction.AccountNumber), "The account does not exist");
-
-                if (response == BankResponse.NoFunds)
-                    ModelState.AddModelError(nameof(Transaction.Amount), "Not enough funds on account");
-
-                if (ModelState.IsValid)
-                    return View("TransferSuccess", _service.GetTransferDetails(transfer.AccountNumber, transfer.ToAccountNumber));
-            }
-            return RedirectToAction("Index", "Transfer", transfer);
-        }
-
-
     }
 }
