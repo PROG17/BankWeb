@@ -9,5 +9,8 @@ namespace BankWeb.Models
 
         [Range(0, double.MaxValue)]
         public decimal Amount { get; set; }
+
+        [Range(0, int.MaxValue)]
+        public int ToAccountNumber { get; set; }
     }
 }

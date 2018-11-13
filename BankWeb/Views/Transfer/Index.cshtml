@@ -1,0 +1,47 @@
+﻿@model Transaction
+
+@{
+    ViewData["Title"] = "Transfer";
+}
+
+
+<form method="post" class="mt-50">
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group regform-item center-block">
+                <label asp-for="AccountNumber" for="accountNumber" class="label label-primary">From account</label>
+                <input asp-for="AccountNumber" type="text" class="form-control" id="accountNumber" />
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group regform-item center-block">
+                <label asp-for="ToAccountNumber" for="accountNumberTo" class="label label-primary">To account</label>
+                <input asp-for="ToAccountNumber" type="text" class="form-control" id="accountNumberTo" />
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <span class="red-text" asp-validation-for="AccountNumber"></span>
+            <span class="red-text" asp-validation-for="ToAccountNumber"></span>
+            <span class="red-text" asp-validation-for="Amount"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group regform-item center-block">
+                <label asp-for="Amount" for="amount" class="label label-primary"></label>
+                <input asp-for="Amount" type="text" class="form-control" id="amount" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-4">
+            <div class="form-group regform-item center-block">
+                <input asp-controller="Bank" asp-action="Transfer" type="submit" value="Transfer" class="form-control btn btn-primary" />
+            </div>
+        </div>
+    </div>
+
+</form>

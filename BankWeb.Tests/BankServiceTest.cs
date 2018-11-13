@@ -1,9 +1,11 @@
 using BankWeb.Configs;
+using BankWeb.Models;
 using BankWeb.Repositories;
 using BankWeb.Services;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
 
 namespace BankWeb.Tests
 {
@@ -67,9 +69,41 @@ namespace BankWeb.Tests
             Assert.AreEqual(expectedResponse, actualResponse);
         }
 
+        [TestMethod]
+        public void TransferTest()
+        {
+
+            int accountNumberFrom = 13019;
+            int accountNumberTo = 13093, customerNumberTo = 1024;
+            decimal amount = 222, expectedAmount = 917.62M;
+
+            var expectedResponse = BankResponse.Success;
+            var actualResponse = _service.Transfer(accountNumberFrom, accountNumberTo, amount);
+
+            Assert.AreEqual(expectedAmount, GetAccountBalance(customerNumberTo, accountNumberTo));
+            Assert.AreEqual(expectedResponse, actualResponse);
+        }
+
+        [TestMethod]
+        public void TransferTestTooMuch()
+        {
+
+            int accountNumberFrom = 13019;
+            int accountNumberTo = 13093, customerNumberTo = 1024;
+            decimal amount = 1500, expectedAmount = 695.62M;
+
+            var expectedResponse = BankResponse.NoFunds;
+            var actualResponse = _service.Transfer(accountNumberFrom, accountNumberTo, amount);
+
+            Assert.AreEqual(expectedAmount, GetAccountBalance(customerNumberTo, accountNumberTo));
+            Assert.AreEqual(expectedResponse, actualResponse);
+        }
+
         private decimal GetAccountBalance(int customerNumber, int accountNumber)
         {
             return _repository.GetAllAccounts()[accountNumber].Balance;
         }
+
+
     }
 }
