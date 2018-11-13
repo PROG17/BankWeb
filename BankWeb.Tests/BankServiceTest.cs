@@ -15,8 +15,8 @@ namespace BankWeb.Tests
         private static IBankRepository _repository;
         private static IBankService _service;
 
-        [ClassInitialize]
-        public static void ClassInit(TestContext testContext)
+        [TestInitialize]
+        public void ClassInit()
         {
             var bankConfig = new ApplicationSettingsConfig()
             {
