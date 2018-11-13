@@ -8,11 +8,13 @@ namespace BankWeb.Services
     public interface IBankService
     {
         Account GetAccount(int accountId);
+        List<Account> GetTransferDetails(int fromAccount, int toAccount);
         decimal? GetAccountBalance(int accountNumber);
         IEnumerable<Customer> GetCustomers();
 
         BankResponse Deposit(int account, decimal amount);
         BankResponse Withdraw(int account, decimal amount);
+        BankResponse Transfer(int fromAccoun, int toAccount, decimal amount);
     }
 
     public class BankService : IBankService
@@ -32,6 +34,15 @@ namespace BankWeb.Services
         public decimal? GetAccountBalance(int accountId)
         {
             return GetAccount(accountId)?.Balance;
+        }
+
+        public List<Account> GetTransferDetails(int fromAccount, int toAccount)
+        {
+            List<Account> accountList = new List<Account>();
+            accountList.Add(GetAccount(fromAccount));
+            accountList.Add(GetAccount(toAccount));
+
+            return accountList;
         }
 
         public IEnumerable<Customer> GetCustomers()
@@ -63,6 +74,29 @@ namespace BankWeb.Services
                     account.Balance -= amount;
                 else
                     response = BankResponse.NoFunds;
+            }
+            else
+                response = BankResponse.NoAccount;
+
+            return response;
+        }
+
+        public BankResponse Transfer(int fromAccountNumber, int toAccountNumber, decimal amount)
+        {
+
+            var response = BankResponse.Success;
+            var fromAccount = GetAccount(fromAccountNumber);
+            var toAccount = GetAccount(toAccountNumber);
+
+            if (fromAccount != null && toAccount != null)
+            {
+                if (fromAccount.Balance >= amount)
+                {
+                    fromAccount.Balance -= amount;
+                    toAccount.Balance += amount;
+                }
+                else
+                    response = BankResponse.NoFunds;                
             }
             else
                 response = BankResponse.NoAccount;
