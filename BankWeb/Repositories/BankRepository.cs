@@ -23,6 +23,9 @@ namespace BankWeb.Repositories
 
         private readonly IOptions<ApplicationSettingsConfig> _config;
 
+        // For testing
+        public BankRepository() { }
+
         public BankRepository(IOptions<ApplicationSettingsConfig> config)
         {
             _config = config;
